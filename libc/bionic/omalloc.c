@@ -731,6 +731,9 @@ omalloc_init(void)
 	mopts.malloc_cache = MALLOC_DEFAULT_CACHE;
 	mopts.delayed_chunk_size = MALLOC_DELAYED_CHUNK_MASK + 1;
 
+	if (getpid() == 1)
+		mopts.malloc_junk = 0;
+
 	for (i = 0; i < 3; i++) {
 		switch (i) {
 		case 0:
